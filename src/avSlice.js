@@ -36,8 +36,20 @@ export const avSlice = createSlice({
   ],
 
   reducers: {
-    incrementAvQuantity: (state, action) => {},
-    decrementAvQuantity: (state, action) => {},
+    // Reducer para incrementar la cantidad del item seleccionado por su índice
+    incrementAvQuantity: (state, action) => {
+      const item = state[action.payload];
+      if (item) {
+        item.quantity++;
+      }
+    },
+    // Reducer para decrementar la cantidad sin permitir valores negativos
+    decrementAvQuantity: (state, action) => {
+      const item = state[action.payload];
+      if (item && item.quantity > 0) {
+        item.quantity--;
+      }
+    },
   },
 });
 
